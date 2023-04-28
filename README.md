@@ -22,12 +22,13 @@ pip install -r /requirements.txt
 - Add the environment variables file (.env) to the project folder.
 It must contain the following settings:
 ```
-SECRET_KEY = 'YOUR_SECRET_KEY'
-DEBUG = False
-DB_NAME='YOUR_DB_NAME'
-DB_USER='YOUR_DB_USER'
-DB_PASS='YOUR_DB_PASSWORD'
-DB_HOST='YOUR_DB_HOST'
+SECRET_KEY='YOUR_SECRET_KEY'
+DEBUG=False
+POSTGRES_USER='Your data'
+POSTGRES_PASSWORD='Your data'
+POSTGRES_DB='Your data'
+POSTGRES_HOST='Your data'
+POSTGRES_PORT='Your data'
 ```
 
 ### How to run locally
@@ -58,6 +59,13 @@ python manage.py createsuperuser
 ```
 
 ----
+
+## Flake8
+
+- Run flake8:
+```
+flake8
+```
 
 ## Tests
 
