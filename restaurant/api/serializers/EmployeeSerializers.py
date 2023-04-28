@@ -15,11 +15,13 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
         fields = ['username', 'email', 'password', 'first_name', 'last_name']
 
     def validate(self, attrs):
-        email_exists=Employee.objects.filter(email=attrs['email']).exists()
+        email_exists = Employee.objects.filter(email=attrs['email']).exists()
         if email_exists:
             raise ValidationError('Email already exists')
 
-        username_exists=Employee.objects.filter(username=attrs['username']).exists()
+        username_exists = Employee.objects.filter(
+            username=attrs['username']
+        ).exists()
         if username_exists:
             raise ValidationError('Username already exists')
 
