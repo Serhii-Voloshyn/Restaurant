@@ -24,7 +24,11 @@ class EmployeeUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser has to have is_superuser being True')
 
-        return self.create_user(email=email, password=password, **extra_fields)
+        return self.create_user(
+            email=email,
+            password=password,
+            **extra_fields
+        )
 
 
 class Employee(AbstractUser):
@@ -47,7 +51,11 @@ class Restaurant(models.Model):
 
 class Menu(models.Model):
     date = models.DateField()
-    restaurant = models.ForeignKey(Restaurant, related_name='restaurant', on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(
+        Restaurant,
+        related_name='restaurant',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.restaurant.name + ' ' + str(self.date)
@@ -58,7 +66,11 @@ class MenuItem(models.Model):
     description = models.CharField(max_length=500)
     price = models.FloatField()
     weight = models.IntegerField()
-    menu = models.ForeignKey(Menu, related_name='menu_items', on_delete=models.CASCADE)
+    menu = models.ForeignKey(
+        Menu,
+        related_name='menu_items',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
@@ -71,8 +83,17 @@ class Vote(models.Model):
             MinValueValidator(1)
         ]
     )
-    menu = models.ForeignKey(Menu, related_name='menu', on_delete=models.CASCADE)
-    employee = models.ForeignKey(Employee, related_name='employee', on_delete=models.SET_NULL, null=True)
+    menu = models.ForeignKey(
+        Menu,
+        related_name='menu',
+        on_delete=models.CASCADE
+    )
+    employee = models.ForeignKey(
+        Employee,
+        related_name='employee',
+        on_delete=models.SET_NULL,
+        null=True
+    )
 
     def __str__(self):
         return str(self.menu) + ' ' + str(self.employee)

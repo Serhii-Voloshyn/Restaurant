@@ -16,12 +16,7 @@ class MenuListSerializer(serializers.ModelSerializer):
         read_only=True,
         view_name='retrieve_restaurant',
     )
-    menu_items = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='retrieve_menu_item',
-    )
 
     class Meta:
         model = Menu
-        fields = ['date', 'restaurant', 'menu_items']
+        fields = ['date', 'restaurant']
